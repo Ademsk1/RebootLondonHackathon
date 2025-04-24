@@ -29,6 +29,16 @@ export default function Home() {
             <div className="mt-12">
               <QuickActions />
             </div>
+
+            {/* Pill Boxes */}
+            <div className="mt-8 flex space-x-4">
+              <div className="bg-slate-200 border-4 border-red-500/80 rounded-lg px-6 py-4 text-black backdrop-blur-sm">
+                <p className="text-sm font-medium">Over Budget</p>
+              </div>
+              <div className="bg-slate-200 border-4 border-green-500/80 rounded-lg px-6 py-4 text-black backdrop-blur-sm">
+                <p className="text-sm font-medium">Savings Goal</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

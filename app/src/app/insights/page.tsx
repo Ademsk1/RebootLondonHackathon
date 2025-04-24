@@ -237,8 +237,8 @@ export default function Insights() {
                 <div className="bg-emerald-50 rounded-lg p-4">
                   <h3 className="font-medium text-emerald-800 mb-2">Sleep Quality & Spending Habits</h3>
                   <p className="text-gray-700">
-                    Research shows that poor sleep can lead to impulsive spending decisions. When you're well-rested,
-                    you're more likely to make thoughtful financial choices. Our data suggests that better sleep quality
+                    Research shows that poor sleep can lead to impulsive spending decisions. When youre well-rested,
+                    youre more likely to make thoughtful financial choices. Our data suggests that better sleep quality
                     correlates with more mindful spending patterns.
                   </p>
                 </div>
@@ -247,14 +247,14 @@ export default function Insights() {
                   <p className="text-gray-700">
                     Elevated heart rate can be an indicator of stress, which often leads to emotional spending.
                     By monitoring your heart rate patterns, you can identify stress triggers and develop healthier
-                    coping mechanisms that don't involve unnecessary spending.
+                    coping mechanisms that dont involve unnecessary spending.
                   </p>
                 </div>
                 <div className="bg-purple-50 rounded-lg p-4">
                   <h3 className="font-medium text-purple-800 mb-2">Mindfulness & Financial Well-being</h3>
                   <p className="text-gray-700">
-                    Regular mindfulness practice has been linked to better financial decision-making. When you're
-                    present and aware, you're less likely to make impulsive purchases and more likely to stick to
+                    Regular mindfulness practice has been linked to better financial decision-making. When youre
+                    present and aware, youre less likely to make impulsive purchases and more likely to stick to
                     your financial goals.
                   </p>
                 </div>

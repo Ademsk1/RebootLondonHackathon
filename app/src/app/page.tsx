@@ -38,7 +38,7 @@ export default function Home() {
           {/* Welcome Section */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, Adam</h1>
-            <p className="text-gray-600">Here's an overview of your finances today</p>
+            <p className="text-gray-600">Heres an overview of your finances today</p>
           </div>
 
           {/* Balance Card */}

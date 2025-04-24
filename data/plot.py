@@ -24,7 +24,7 @@ def get_bpm(i, file_name):
                 current_date = row[0]
                 total = 0
             else:
-                total += int(row[2])
+                total += int(row[3])
 
     return x, y
 
@@ -43,12 +43,12 @@ def main():
 
         plt.figure(i)
         plt.plot(x[i], y[i], color = 'g', linestyle = 'dashed',
-            marker = 'o',label = "Average BPM")
+            marker = 'o',label = "Average HRV")
 
         plt.xticks(rotation = 25)
         plt.xlabel('Dates')
-        plt.ylabel('BPM')
-        plt.title(f'Average BPM ({file_name})', fontsize = 20)
+        plt.ylabel('HRV')
+        plt.title(f'Average HRV ({file_name})', fontsize = 20)
         plt.grid()
         plt.legend()
     

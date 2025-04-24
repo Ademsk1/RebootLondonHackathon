@@ -8,7 +8,7 @@ api = Api(api_blueprint)
 sleep_data = [
   {
     "product": "Costa",
-    "corrleation": "sleep duration",
+    "correlation": "Sleep Duration",
     "coefficient": 0.97,
     "indicator": "low sleep",
     "metadata": {

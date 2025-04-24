@@ -101,3 +101,82 @@ comp_data = [
 class Mindfullness(Resource):
     def get(self):
         return comp_data
+    
+bpm_data = [
+  {
+    "product": "Impulse Spending",
+    "corrleation": "bpm variability",
+    "coefficient": 0.92,
+    "indicator": "?",
+    "metadata": {
+      "xlabel": "Time (days)",
+      "line1": "Average BPM",
+      "line2": "Impulse Spending"
+    },
+    "line1": [
+      {
+        "x": "2025-04-17",
+        "y": 67
+      },
+      {
+        "x": "2025-04-18",
+        "y": 73
+      },
+      {
+        "x": "2025-04-19",
+        "y": 61
+      },
+      {
+        "x": "2025-04-20",
+        "y": 87
+      },
+      {
+        "x": "2025-04-21",
+        "y": 92
+      },
+      {
+        "x": "2025-04-22",
+        "y": 74
+      },
+      {
+        "x": "2025-04-23",
+        "y": 69
+      }
+    ],
+    "line2": [
+      {
+        "x": "2025-04-17",
+        "y": 10.43
+      },
+      {
+        "x": "2025-04-18",
+        "y": 11.27
+      },
+      {
+        "x": "2025-04-19",
+        "y": 8.64
+      },
+      {
+        "x": "2025-04-20",
+        "y": 17.92
+      },
+      {
+        "x": "2025-04-21",
+        "y": 27.84
+      },
+      {
+        "x": "2025-04-22",
+        "y": 21.53
+      },
+      {
+        "x": "2025-04-23",
+        "y": 13.21
+      }
+    ]
+  }
+]
+
+@api.route('/bpm')
+class BPM(Resource):
+    def get(self):
+        return bpm_data

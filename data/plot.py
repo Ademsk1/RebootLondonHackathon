@@ -20,11 +20,11 @@ def get_bpm(i, file_name):
         for row in lines:
             if row[0] != current_date:
                 x[i].append(current_date)
-                y[i].append(total/24)
+                y[i].append(total)
                 current_date = row[0]
                 total = 0
             else:
-                total += int(row[3])
+                total += float(row[12])
 
     return x, y
 
@@ -43,12 +43,12 @@ def main():
 
         plt.figure(i)
         plt.plot(x[i], y[i], color = 'g', linestyle = 'dashed',
-            marker = 'o',label = "Average HRV")
+            marker = 'o',)
 
         plt.xticks(rotation = 25)
-        plt.xlabel('Dates')
-        plt.ylabel('HRV')
-        plt.title(f'Average HRV ({file_name})', fontsize = 20)
+        plt.xlabel('Date')
+        plt.ylabel('Sleep Duration')
+        plt.title(f'Sleep Duration ({file_name})', fontsize = 20)
         plt.grid()
         plt.legend()
     

@@ -18,14 +18,25 @@ export default function Home() {
 
       {/* Background Design */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-emerald-50 to-white opacity-50"></div>
-        <div className="absolute top-0 left-0 w-full h-full">
-          <svg className="w-full h-full" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,500 C150,450 350,550 500,500 C650,450 850,550 1000,500 L1000,1000 L0,1000 Z" fill="url(#gradient)" />
+        {/* Base white background */}
+        <div className="absolute inset-0 bg-white"></div>
+
+        {/* Green gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-100/50 to-white/0"></div>
+
+        {/* Decorative circles */}
+        <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-emerald-200/40 blur-2xl"></div>
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-emerald-300/40 blur-2xl"></div>
+
+        {/* Wave pattern */}
+        <div className="absolute bottom-0 left-0 w-full h-1/3">
+          <svg className="w-full h-full" viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,100 C150,50 350,150 500,100 C650,50 850,150 1000,100 L1000,200 L0,200 Z"
+              fill="url(#waveGradient)" />
             <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.1 }} />
-                <stop offset="100%" style={{ stopColor: '#059669', stopOpacity: 0.1 }} />
+              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.3 }} />
+                <stop offset="100%" style={{ stopColor: '#059669', stopOpacity: 0.3 }} />
               </linearGradient>
             </defs>
           </svg>

@@ -34,6 +34,7 @@ export default function Insights() {
   const [sleepData, setSleepData] = useState<GraphData | null>(null)
   const [bpmData, setBpmData] = useState<GraphData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,6 +56,7 @@ export default function Insights() {
         console.error('Error fetching data:', error)
       } finally {
         setLoading(false)
+        setIsLoading(false)
       }
     }
 
@@ -159,64 +161,88 @@ export default function Insights() {
             <div className="grid grid-cols-3 gap-4 mb-8">
               <div className="bg-white rounded-xl p-4 shadow-sm">
                 <p className="text-sm text-gray-500">Sleep Correlation</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {sleepData ? `${sleepData.coefficient.toFixed(2)}` : '-'}
-                </p>
+                {isLoading ? (
+                  <div className="flex justify-center items-center h-8">
+                    <div className="w-5 h-5 border-2 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <p className="text-2xl font-semibold text-gray-900">
+                    {sleepData ? `${sleepData.coefficient.toFixed(2)}` : '-'}
+                  </p>
+                )}
               </div>
               <div className="bg-white rounded-xl p-4 shadow-sm">
                 <p className="text-sm text-gray-500">Heart Rate Correlation</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {bpmData ? `${bpmData.coefficient.toFixed(2)}` : '-'}
-                </p>
+                {isLoading ? (
+                  <div className="flex justify-center items-center h-8">
+                    <div className="w-5 h-5 border-2 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <p className="text-2xl font-semibold text-gray-900">
+                    {bpmData ? `${bpmData.coefficient.toFixed(2)}` : '-'}
+                  </p>
+                )}
               </div>
               <div className="bg-white rounded-xl p-4 shadow-sm">
                 <p className="text-sm text-gray-500">Overall Impact</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {sleepData && bpmData ?
-                    `${((sleepData.coefficient + bpmData.coefficient) / 2).toFixed(2)}` :
-                    '-'}
-                </p>
+                {isLoading ? (
+                  <div className="flex justify-center items-center h-8">
+                    <div className="w-5 h-5 border-2 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <p className="text-2xl font-semibold text-gray-900">
+                    {sleepData && bpmData ?
+                      `${((sleepData.coefficient + bpmData.coefficient) / 2).toFixed(2)}` :
+                      '-'}
+                  </p>
+                )}
               </div>
             </div>
 
             {/* Carousel */}
-            <div
-              className="relative h-[60vh]"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              ref={carouselRef}
-            >
-              {/* Carousel Slides */}
-              <div className="overflow-hidden h-full">
-                <div
-                  className="flex h-full transition-transform duration-300 ease-in-out"
-                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                >
-                  {insights.map((insight, index) => (
-                    <div
-                      key={index}
-                      className="w-full flex-shrink-0 bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col"
-                    >
-                      <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-2xl font-semibold text-gray-900">{insight.title}</h2>
-                        <div className="rounded-full bg-slate-200 p-3">
-                          {insight.icon}
+            {isLoading ? (
+              <div className="h-[60vh] flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              <div
+                className="relative h-[60vh]"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                ref={carouselRef}
+              >
+                {/* Carousel Slides */}
+                <div className="overflow-hidden h-full">
+                  <div
+                    className="flex h-full transition-transform duration-300 ease-in-out"
+                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                  >
+                    {insights.map((insight, index) => (
+                      <div
+                        key={index}
+                        className="w-full flex-shrink-0 bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col"
+                      >
+                        <div className="flex items-center justify-between mb-4">
+                          <h2 className="text-2xl font-semibold text-gray-900">{insight.title}</h2>
+                          <div className="rounded-full bg-slate-200 p-3">
+                            {insight.icon}
+                          </div>
                         </div>
+                        <div className="text-5xl font-bold text-gray-900 mb-4">{insight.value}</div>
+                        <div className="flex items-center text-lg text-gray-500 mb-4">
+                          <span className={insight.change && insight.change.startsWith('+') ? 'text-green-500' : 'text-gray-500'}>
+                            {insight.change || 'No data'}
+                          </span>
+                          <span className="ml-2">{insight.period}</span>
+                        </div>
+                        {insight.data && <PlotGraph data={insight.data} />}
                       </div>
-                      <div className="text-5xl font-bold text-gray-900 mb-4">{insight.value}</div>
-                      <div className="flex items-center text-lg text-gray-500 mb-4">
-                        <span className={insight.change && insight.change.startsWith('+') ? 'text-green-500' : 'text-gray-500'}>
-                          {insight.change || 'No data'}
-                        </span>
-                        <span className="ml-2">{insight.period}</span>
-                      </div>
-                      {insight.data && <PlotGraph data={insight.data} />}
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Dots Indicator */}
             <div className="flex justify-center mt-4 space-x-2">

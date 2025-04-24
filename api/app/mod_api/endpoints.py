@@ -281,7 +281,7 @@ class Mindfullness(Resource):
 hrv_data = [
   {
     "product": "Impulse Spending",
-    "corrleation": "heart rate variability",
+    "correlation": "heart rate variability",
     "coefficient": 0.92,
     "indicator": "?",
     "metadata": {

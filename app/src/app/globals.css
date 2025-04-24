@@ -28,3 +28,22 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #003366;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* styles/globals.css */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/GT_Ultra/GTUltra-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Use the font for the body or specific elements */
+body {
+  font-family: 'CustomFont', sans-serif;
+}
+
+@layer base {}

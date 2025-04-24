@@ -38,9 +38,10 @@ export default function Insights() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const apiUrl = process.env.NEXT_PUBLIC_API || 'http://localhost:9090'
         const [sleepResponse, bpmResponse] = await Promise.all([
-          fetch('http://localhost:9090/api/sleep'),
-          fetch('http://localhost:9090/api/bpm')
+          fetch(`${apiUrl}/api/sleep`),
+          fetch(`${apiUrl}/api/bpm`)
         ])
 
         const [sleepJson, bpmJson] = await Promise.all([

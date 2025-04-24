@@ -148,12 +148,40 @@ export default function Insights() {
       {/* Insights Content */}
       <div className="h-screen flex flex-col">
         <div className="flex-1 flex flex-col">
-          <div className="mx-6 mt-4">
-            <h1 className="text-2xl font-bold text-gray-900 mb-6">Insights</h1>
+          <div className="mx-6 mt-16 mb-16">
+            {/* Header Section */}
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Your Insights</h1>
+              <p className="text-gray-600">Discover how your lifestyle affects your spending patterns</p>
+            </div>
+
+            {/* Stats Overview */}
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="bg-white rounded-xl p-4 shadow-sm">
+                <p className="text-sm text-gray-500">Sleep Correlation</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {sleepData ? `${sleepData.coefficient.toFixed(2)}` : '-'}
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-4 shadow-sm">
+                <p className="text-sm text-gray-500">Heart Rate Correlation</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {bpmData ? `${bpmData.coefficient.toFixed(2)}` : '-'}
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-4 shadow-sm">
+                <p className="text-sm text-gray-500">Overall Impact</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {sleepData && bpmData ?
+                    `${((sleepData.coefficient + bpmData.coefficient) / 2).toFixed(2)}` :
+                    '-'}
+                </p>
+              </div>
+            </div>
 
             {/* Carousel */}
             <div
-              className="relative h-[70vh]"
+              className="relative h-[60vh]"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
@@ -200,6 +228,37 @@ export default function Insights() {
                     }`}
                 />
               ))}
+            </div>
+
+            {/* Health & Finance Insights */}
+            <div className="mt-12 bg-white rounded-xl p-6 shadow-sm">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Understanding Your Health & Finances</h2>
+              <div className="space-y-4">
+                <div className="bg-emerald-50 rounded-lg p-4">
+                  <h3 className="font-medium text-emerald-800 mb-2">Sleep Quality & Spending Habits</h3>
+                  <p className="text-gray-700">
+                    Research shows that poor sleep can lead to impulsive spending decisions. When you're well-rested,
+                    you're more likely to make thoughtful financial choices. Our data suggests that better sleep quality
+                    correlates with more mindful spending patterns.
+                  </p>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h3 className="font-medium text-blue-800 mb-2">Heart Rate & Financial Stress</h3>
+                  <p className="text-gray-700">
+                    Elevated heart rate can be an indicator of stress, which often leads to emotional spending.
+                    By monitoring your heart rate patterns, you can identify stress triggers and develop healthier
+                    coping mechanisms that don't involve unnecessary spending.
+                  </p>
+                </div>
+                <div className="bg-purple-50 rounded-lg p-4">
+                  <h3 className="font-medium text-purple-800 mb-2">Mindfulness & Financial Well-being</h3>
+                  <p className="text-gray-700">
+                    Regular mindfulness practice has been linked to better financial decision-making. When you're
+                    present and aware, you're less likely to make impulsive purchases and more likely to stick to
+                    your financial goals.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
